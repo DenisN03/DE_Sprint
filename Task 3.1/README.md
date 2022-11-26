@@ -28,31 +28,31 @@ docker exec -it 823816c58f2c /bin/bash
 ``` bash
 ls -lah
 ```
-![Sample image](/images/1-files.png)
+![Sample image](./images/1-files.png)
 
 Перенос файлов на HDFS:
 ``` bash
 hdfs dfs -copyFromLocal vim-t* /user/cloudera/
 ```
-![Sample image](/images/2-hue.png)
+![Sample image](./images/2-hue.png)
 
 Объединение всех томов в один файл:
 ``` bash
 hdfs dfs -cat /user/cloudera/vim-t*.fb2 | hdfs dfs -put - /user/cloudera/vim.fb2
 ```
-![Sample image](/images/3-cat.png)
+![Sample image](./images/3-cat.png)
 
 Изменение прав доступа к файлу:
 ``` bash
 hdfs dfs -chmod 755 /user/cloudera/vim.fb2
 ```
-![Sample image](/images/4-chmod.png)
+![Sample image](./images/4-chmod.png)
 
 Вывод информации о размере файлов:
 ``` bash
 hdfs dfs -du -h /user/cloudera/
 ```
-![Sample image](/images/5-du.png)
+![Sample image](./images/5-du.png)
 
 Изменение фактора репликации для файла:
 ``` bash
@@ -63,4 +63,4 @@ hdfs dfs -setrep -w 2 /user/cloudera/vim.fb2
 ``` bash
 hdfs dfs -cat /user/cloudera/vim.fb2 | wc -l
 ```
-![Sample image](/images/7-wc.png)
+![Sample image](./images/7-wc.png)
