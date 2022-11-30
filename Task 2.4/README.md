@@ -13,7 +13,7 @@ SELECT FirstName from employees_info group by FirstName;
 
 *c. Рассчитайте средний стаж для каждого уровня сотрудников:*
 ```sql
-select ei.grade, avg(current_date-ei.startdate) as experience from employees_info ei
+select ei.grade, round(avg(current_date-ei.startdate)/365.0,2) as experience from employees_info ei
 	group by ei.grade
 	order by experience
 ```
