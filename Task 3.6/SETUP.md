@@ -49,7 +49,7 @@ echo -e "AIRFLOW_UID=$(id -u)" > .env
 ```
 Если файл с именем *.env* не создался, вы можете создать его вручную. Файл должен содержать строку:
 ``` bash
-AIRFLOW_UID=50000
+AIRFLOW_UID=50000[task_dag.py](airflow%2Fdags%2Ftask_dag.py)
 ```
 
 Далее необходимо выполнить инициализацию:
@@ -70,6 +70,31 @@ start_airflow-init_1 exited with code 0
 docker-compose down --volumes --remove-orphans
 cd ../
 rm -rf ./airflow
+```
+
+### Добавление БД Postgres
+Для добавления собственной БД Postgres необходимо добавить в файл docker-compose.yaml в раздел services следующие строки:
+``` bash
+  db:
+    image: postgres:13.2-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d airflow" ]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+    restart: always
+    ports:
+      - "5430:5432"
+```
+В разделе volumes необходимо добавить:
+``` bash
+  postgres-data:
 ```
 
 ### Запуск Airflow
