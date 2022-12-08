@@ -71,7 +71,7 @@ docker-compose down --volumes --remove-orphans
 cd ../
 rm -rf ./airflow
 ```
-[README.md](README.md)
+
 ### Добавление БД Postgres
 Для добавления собственной БД Postgres необходимо добавить в файл docker-compose.yaml в раздел services следующие строки:
 ``` bash
